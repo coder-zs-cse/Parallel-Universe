@@ -13,6 +13,11 @@ const UserRouter = require("./routers/UserRouters");
 dotenv.config();
 
 //_______________MAIN_CODE_______________
+
+//connect with DB
+require("./config/connection_DB");
+
+
 //getting APIs to use
 app.use("/api/user", UserRouter);
 
