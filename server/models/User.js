@@ -31,7 +31,7 @@ const UserModel = new mongoose.Schema({
   ],
 });
 
-const User = mongoose.model("User", UserModel);
+
 
 // => Define a pre=save function => Function to be called before svaing into database
 UserModel.pre("save", async function (next) {
@@ -39,8 +39,10 @@ UserModel.pre("save", async function (next) {
     next();
   }
   try {
+    console.log("DEBUG : HASHING PASSWORD")
     const salt = await bcryptjs.genSalt(10);
     this.password = await bcryptjs.hash(this.password, salt);
+    console.log("DEBUG : HASHED PASSWORD: "+this.password)
     next();
   } catch (e) {
     console.log("Hashing failed due to : " + e);
@@ -64,5 +66,7 @@ UserModel.methods.GenerateToken = async function (userid) {
   console.log("#DEBIG: TOKEN IS: " + token);
   return token;
 };
+
+const User = mongoose.model("User", UserModel);
 
 module.exports = User;
