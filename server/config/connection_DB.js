@@ -4,9 +4,9 @@ const DB = process.env.DB;
 
 mongoose
   .connect(DB, {
-    // useNewUrlParser:true,
+    useNewUrlParser:true,
   
-    // useUnifiedTopology:true,
+    useUnifiedTopology:true,
   })
   .then(() => {
     console.log("Database connected");

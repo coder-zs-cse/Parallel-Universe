@@ -2,7 +2,6 @@ const express = require("express");
 const UserRouter = express.Router();
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
-
 //____________________________________________________________
 //__________________SIGN UP__________________________________
 UserRouter.post(
@@ -36,7 +35,7 @@ UserRouter.post(
 );
 
 //____________________________________________________________
-//__________________SIGN UP__________________________________
+//__________________LOGIN__________________________________
 UserRouter.post(
   "/login",
   asyncHandler(async (req, res) => {

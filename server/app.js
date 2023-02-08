@@ -10,6 +10,7 @@ app.use(express.json());
 //app must get confidential data drom config so get the cdotenc
 const dotenv = require("dotenv");
 const UserRouter = require("./routers/UserRouters");
+const UniverseRouter = require("./routers/UniverRouter");
 dotenv.config();
 
 //_______________MAIN_CODE_______________
@@ -20,6 +21,7 @@ require("./config/connection_DB");
 
 //getting APIs to use
 app.use("/api/user", UserRouter);
+app.use("/api/universe", UniverseRouter);
 
 const port = process.env.PORT || 6000;
 
