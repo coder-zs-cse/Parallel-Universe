@@ -7,7 +7,7 @@ const User = require("../models/User");
 UserRouter.post(
   "/signup",
   asyncHandler(async (req, res) => {
-    const { userName, email, password, avator, skills, abilities } = req.body;
+    const { userName, email, password, avator } = req.body;
 
     //No same use shall exists, this can be found using the email
     const findEmail = await User.findOne({ email: email });
@@ -27,8 +27,7 @@ UserRouter.post(
       _id: createUser._id,
       userName: userName,
       email: email,
-      skills: skills,
-      abilities: abilities,
+      avator:avator,
       token: token,
     });
   })
@@ -59,8 +58,7 @@ UserRouter.post(
         _id: findEmail._id,
         userName: findEmail.userName,
         email: findEmail.email,
-        skills: findEmail.skills,
-        abilities: findEmail.abilities,
+        avator:findEmail.avator,
         token: token,
       });
     }

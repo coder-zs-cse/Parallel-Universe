@@ -8,6 +8,10 @@ const HomeScreen = () => {
   const [Universes, setUniverses] = useState([]);
   const [loading, setloading] = useState(false);
 
+  
+  
+ 
+
   // => Fetch all blogs
   useEffect(() => {
     const GetUniverses = async () => {
@@ -18,6 +22,7 @@ const HomeScreen = () => {
       setloading(false);
     };
     GetUniverses();
+
   }, []);
   return loading ? (
     "Loading"
@@ -58,6 +63,8 @@ const HomeScreen = () => {
           })}
         </div>
       </div>
+      {/* <div id="root1">Hello</div>
+      <button onClick={()=>AvatarCreator()}>Clcik here</button> */}
     </>
   );
 };

@@ -16,22 +16,21 @@ const UserModel = new mongoose.Schema({
     required: true,
   },
   avator: {
-    type: String,
-  },
-  skills: [{ type: String }],
-  abilities: [
-    {
-      ability: {
-        type: String,
-      },
-      level: {
-        type: String,
-      },
+    skin: {
+      type: String,
     },
-  ],
+    top: {
+      type: String,
+    },
+    haircolor: {
+      type: String,
+    },
+    clothingcolor: {
+      type: String,
+    },
+  },
+
 });
-
-
 
 // => Define a pre=save function => Function to be called before svaing into database
 UserModel.pre("save", async function (next) {
@@ -39,10 +38,10 @@ UserModel.pre("save", async function (next) {
     next();
   }
   try {
-    console.log("DEBUG : HASHING PASSWORD")
+    console.log("DEBUG : HASHING PASSWORD");
     const salt = await bcryptjs.genSalt(10);
     this.password = await bcryptjs.hash(this.password, salt);
-    console.log("DEBUG : HASHED PASSWORD: "+this.password)
+    console.log("DEBUG : HASHED PASSWORD: " + this.password);
     next();
   } catch (e) {
     console.log("Hashing failed due to : " + e);
