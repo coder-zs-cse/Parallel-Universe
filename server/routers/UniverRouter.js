@@ -1,6 +1,7 @@
 const express = require("express");
 const UniverseRouter = express.Router();
 const asyncHandler = require("express-async-handler");
+const auth = require("../Middleware/Authenticate");
 const Universe = require("../models/Universe");
 //____________________________________________________________
 //________________GET ALL UNIVERSES__________________________

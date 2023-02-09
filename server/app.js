@@ -11,6 +11,7 @@ app.use(express.json());
 const dotenv = require("dotenv");
 const UserRouter = require("./routers/UserRouters");
 const UniverseRouter = require("./routers/UniverRouter");
+const CommentRouter = require("./routers/CommentRouter");
 dotenv.config();
 
 //_______________MAIN_CODE_______________
@@ -22,6 +23,7 @@ require("./config/connection_DB");
 //getting APIs to use
 app.use("/api/user", UserRouter);
 app.use("/api/universe", UniverseRouter);
+app.use("/api/comment",CommentRouter);
 
 const port = process.env.PORT || 6000;
 
