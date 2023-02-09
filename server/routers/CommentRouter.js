@@ -26,9 +26,9 @@ CommentRouter.post(
 
 //_____________________________________________________
 //______________GET COMMENT ON SPECIFIC UNIVERSE________
+// NOTE: auth not being added here because user shall be allowed to see comments on universe without being authorized
 CommentRouter.get(
   "/:id",
-  auth,
   asyncHandler(async (req, res) => {
     const universe = req.params.id;
 

@@ -44,7 +44,7 @@ UniverseRouter.post(
       const SaveBlog = await PostBlog.save();
       res.status(200).send(SaveBlog);
     } catch (e) {
-      res.status(400).send("Unable to post blog");
+      throw new Error("Unable to post blog");
     }
   })
 );
