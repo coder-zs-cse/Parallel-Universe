@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import Lander from "../Components/Landing";
+import UniverseCard from "../Components/UniverseCards";
 const HomeScreen = () => {
   // => State to save all universes
   const [Universes, setUniverses] = useState([]);
@@ -26,10 +27,10 @@ const HomeScreen = () => {
         <Lander />
         <h2 className="text-center welcometxt mt-4">Universes</h2>
         <div className="row container">
-          {Universes.map((e,i) => {
+          {Universes.map((e, i) => {
             return (
               <>
-                <Link
+                {/* <Link
                   className="Card col-12 col-md-3 col-lg-3 uni_card"
                   to={`/getuniverse/${e._id}`}
                 >
@@ -45,7 +46,13 @@ const HomeScreen = () => {
                     />
                     <p>{e.description.slice(0, 200) + "...."}</p>
                   </div>
-                </Link>
+                </Link> */}
+                <UniverseCard
+                  key={e._id}
+                  name={e.name}
+                  images={e.images}
+                  description={e.description}
+                />
               </>
             );
           })}
