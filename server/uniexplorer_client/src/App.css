@@ -1,38 +1,229 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0.1rem;
+  font-family: "cursive";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+
+
+  background: url("../public/images/img1.jfif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: black !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*Home landing componenet*/
+
+.boxcontainer{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  border: 5px solid #1e00ff;
+  width: 80%;
+  margin: auto;
+  border-radius: 20rem;
+  flex-direction: column;
+  padding: 4rem;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+
+}
+.box1, .box2 ,.box3{
+  opacity: 1 !important; 
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #0033ff;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 10rem;
+  transition: all 5s;
+  animation: rotate 5s alternate infinite;
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
 }
 
-.App-link {
-  color: #61dafb;
+.box2{
+  width: 50rem;
+  height: 15rem;
+  animation: rotate 6s alternate infinite;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.box3{
+  width: 10rem;
+  height: 20rem;
+  animation: rotate 7s alternate infinite;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+
+@keyframes rotate {
+  from{
+   transform: rotate(120deg);
   }
-  to {
+  to{
     transform: rotate(360deg);
   }
 }
+
+.landertxt{
+  color: #fff;
+  font-weight: bolder;
+  padding: 0.5rem;
+  margin: 0.3rem;
+  text-align: center;
+}
+
+.welcomebox{
+  margin-top: 2rem !important;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+ .welcometxt{
+ color: #1900ff;
+  /* animation: changemystyle 1s alternate infinite; */
+  text-shadow: 0 2px 1px #ffffff, 
+  -1px 3px 1px #e6e6e6, 
+  -2px 5px 1px #f6f6f6;
+  letter-spacing: 0.2rem;
+  text-align: center;
+}
+
+@keyframes changemystyle {
+  from{
+    text-shadow: 2px 2px 4px #0011ff;
+  }
+  to{
+    text-shadow: 2px 2px 4px #f93b3b;
+  }
+}
+
+/*Navbar styling*/
+
+.navbar{
+  /* border: 2px solid #fff; */
+  background-color: #000000;
+  border-radius: 3rem;
+  margin: 0.3rem;
+  margin-bottom: 0.6rem;
+  height: 4rem;
+  color: #fff;
+}
+
+.navbar .nav-item{
+
+  border: 2px solid #0033ff;
+ 
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+} 
+.nav-item .nav-link{
+  position: absolute;
+color: #fff !important;
+width: 4rem;
+height: 4rem;
+border-radius: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+}
+
+#n1{
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+#n2{
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+#n3{
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+#navtitle{
+  color: #ffffff;
+  border: 2px solid #0011ff;
+  padding: 0.4rem;
+  border-radius: 4rem;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+/*Home screen styling*/
+.mainwrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container{
+  margin-top: 2rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  
+}
+
+.uni_card{
+  text-decoration: none !important;
+  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #ffffff;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.uni_card .header{
+  text-align: center;
+  font-weight: bolder;
+  font-size: larger;
+}
+.uni_card .uni_img{
+  border: 3px solid #0011ff;
+  border-radius: 0.8rem ;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+  margin-bottom: 1rem;
+}
+
+.uni_card:hover{
+  color: #fff;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+.bg1,.bg2,.bg3{
+  position: absolute;
+  background-color: #0011ff;
+  width: 30rem;
+  height: 15rem;
+  border-radius: 10rem;
+  z-index: -1;
+  opacity: 0.4;
+  animation: rotate 7s alternate infinite;
+}
+
+.bg2{
+  width: 30rem;
+  height: 15rem;
+  animation: rotate 4s alternate infinite;
+}
+
+.bg3{
+  animation: rotate 9s alternate infinite;
+}
+

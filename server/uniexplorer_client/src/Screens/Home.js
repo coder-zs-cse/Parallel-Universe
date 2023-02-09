@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Lander from "../Components/Landing";
 const HomeScreen = () => {
   // => State to save all universes
   const [Universes, setUniverses] = useState([]);
@@ -21,19 +22,35 @@ const HomeScreen = () => {
     "Loading"
   ) : (
     <>
-      <h1>Hello ji!!</h1>
-      {Universes.map((e) => {
-        return (
-          <>
-            <Link to={`/getuniverse/${e._id}`}>
-              <div key={e._id}>
-                <h6>{e.name}</h6>
-                <p>{e.description}</p>
-              </div>
-            </Link>
-          </>
-        );
-      })}
+      <div className="mainwrapper">
+        <Lander />
+        <h2 className="text-center welcometxt mt-4">Universes</h2>
+        <div className="row container">
+          {Universes.map((e,i) => {
+            return (
+              <>
+                <Link
+                  className="Card col-12 col-md-3 col-lg-3 uni_card"
+                  to={`/getuniverse/${e._id}`}
+                >
+                    <div className="bg1"></div>
+                    <div className="bg2"></div>
+                    <div className="bg3"></div>
+                  <div key={e._id}>
+                    <h6 className="header">{e.name}</h6>
+                    <img
+                      src={e.images[0].link}
+                      alt={e.images[0].alt}
+                      className="img-fluid uni_img"
+                    />
+                    <p>{e.description.slice(0, 200) + "...."}</p>
+                  </div>
+                </Link>
+              </>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

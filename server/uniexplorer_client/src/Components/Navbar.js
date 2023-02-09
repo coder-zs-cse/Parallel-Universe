@@ -67,19 +67,19 @@ const Navbar = () => {
   const RenderMenu = () => {
     return (
       <>
-        <li className="nav-item">
+        <li className="nav-item" id="n1">
           <Link className="nav-link " aria-current="page" to="/">
             Home
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" id="n2">
           <Link className="nav-link" to="/login">
             Login
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link className="nav-link" to="/blogs">
+        <li className="nav-item" id="n3">
+          <Link className="nav-link" to="/signup">
             Signup
           </Link>
         </li>
