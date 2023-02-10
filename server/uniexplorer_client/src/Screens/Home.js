@@ -35,23 +35,7 @@ const HomeScreen = () => {
           {Universes.map((e, i) => {
             return (
               <>
-                {/* <Link
-                  className="Card col-12 col-md-3 col-lg-3 uni_card"
-                  to={`/getuniverse/${e._id}`}
-                >
-                    <div className="bg1"></div>
-                    <div className="bg2"></div>
-                    <div className="bg3"></div>
-                  <div key={e._id}>
-                    <h6 className="header">{e.name}</h6>
-                    <img
-                      src={e.images[0].link}
-                      alt={e.images[0].alt}
-                      className="img-fluid uni_img"
-                    />
-                    <p>{e.description.slice(0, 200) + "...."}</p>
-                  </div>
-                </Link> */}
+        
                 <UniverseCard
                   key={e._id}
                   name={e.name}
@@ -63,8 +47,7 @@ const HomeScreen = () => {
           })}
         </div>
       </div>
-      {/* <div id="root1">Hello</div>
-      <button onClick={()=>AvatarCreator()}>Clcik here</button> */}
+    
     </>
   );
 };

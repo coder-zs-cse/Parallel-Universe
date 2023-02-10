@@ -106,7 +106,13 @@ body {
 }
 
 /*Navbar styling*/
-
+.navbar-toggler{
+  background-color: #4400ff !important;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+.navbar-toggler-icon{
+  color: #e6e6e6 !important;
+}
 .navbar{
   /* border: 2px solid #fff; */
   background-color: #000000;
@@ -285,3 +291,4 @@ align-items: center;
   align-items: center;
   color: #e6e6e6 !important;
 }
+

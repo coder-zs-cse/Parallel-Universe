@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {useDispatch} from "react-redux";
-import {useHistory} from "react-router-dom";
-import {UserSignup} from "../Actions/User_signup";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Userlogin from "../Actions/User_login";
+import { UserSignup } from "../Actions/User_signup";
 
-const Avatar = () => {
+const Avatar = ({signup}) => {
   //Avataar realedt code
   const Avataaars = {
     defaultOptions: {
@@ -766,8 +767,8 @@ const Avatar = () => {
     clothingcolor: "blue02",
   });
   //___________________redux________________
-  const dispatch=useDispatch();
-  const history=useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   //   useEffect(() => {
   //     console.log(skins);
   //     console.log(tops);
@@ -807,119 +808,173 @@ const Avatar = () => {
 
   //submit handler
   const SubmitHandler = async (e) => {
+    if (
+      email.trim() === "" ||
+     (signup===true && userName.trim() === "") ||
+      password.trim() === ""
+    ) {
+      alert("Enter all fields");
+      return;
+    }
     e.preventDefault();
     console.log(avator);
-    const { data } = await axios.post(
-      "/api/user/signup",
-      { userName, email, password, avator },
-      {
-        headers: {
-          "Content-type": "application/json",
-        },
+    if(signup===true){
+      const { data } = await axios.post(
+        "/api/user/signup",
+        { userName, email, password, avator },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(data);
+  
+      if (data) {
+        alert("Signup done");
+        dispatch(UserSignup(data));
+        setuserName("");
+        setemail("");
+        setpassword("");
+        history.push("/");
+      } else {
+        alert("Oops signup failed");
       }
-    );
-    console.log(data);
-
-    if (data) {
-     alert("Signup done");
-      dispatch(UserSignup(data))
-      history.push("/");
-    } else {
-      alert("Oops signup failed");
     }
+    else{
+      const { data } = await axios.post(
+        "/api/user/login",
+        {  email, password },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(data);
+  
+      if (data) {
+        alert("User logged in");
+        dispatch(Userlogin(data));
+        setuserName("");
+        setemail("");
+        setpassword("");
+        history.push("/");
+      } else {
+        alert("Oops login failed");
+      }
+    }
+   
   };
   return (
     <>
-      <div className="col-12 col-lg-5 col-md-5">
-        <div className="avcontainer">
-          <h6 className="text-center avtxt">Select Skin</h6>
-          {skins.map((e, i) => {
-            return (
-              <>
-                <div
-                  className="btn"
-                  key={i * Math.random()}
-                  onClick={() => {
-                    setskin(e);
-                    AvatarCreator();
-                  }}
-                >
-                  {e}
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className="avcontainer">
-          <h6 className="text-center avtxt">Select top</h6>
-          {tops.map((e, i) => {
-            return (
-              <>
-                <div
-                  className="btn"
-                  key={i * Math.random()}
-                  onClick={() => {
-                    settop(e);
-                    AvatarCreator();
-                  }}
-                >
-                  {e}
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className="avcontainer">
-          <h6 className="text-center avtxt">Select Hair Color</h6>
-          {haircolors.map((e, i) => {
-            return (
-              <>
-                <div
-                  className="btn"
-                  key={i * Math.random()}
-                  onClick={() => {
-                    sethaircolor(e);
-                    AvatarCreator();
-                  }}
-                >
-                  {e}
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className="avcontainer">
-          <h6 className="text-center avtxt">Select Clothing Color</h6>
-          {clothingcolors.map((e, i) => {
-            return (
-              <>
-                <div
-                  className="btn"
-                  key={i * Math.random()}
-                  onClick={() => {
-                    setclothingcolor(e);
-                    AvatarCreator();
-                  }}
-                >
-                  {e}
-                </div>
-              </>
-            );
-          })}
-        </div>
-      </div>
-      <div className="col-12 col-lg-6 col-md-6">
-        <div id="root1"> Select the options and get your avatar on stage</div>
-        <form method="POST" className="form">
-          <div className="formele">
-            <label>Enter username</label>
-            <input
-              type="text"
-              name="username"
-              value={userName}
-              onChange={(e) => setuserName(e.target.value)}
-            />
+      {signup===true && (
+        <>
+          <div className="col-12 col-lg-5 col-md-5">
+            <div className="avcontainer">
+              <h6 className="text-center avtxt">Select Skin</h6>
+              {skins.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="btn"
+                      key={i * Math.random()}
+                      onClick={() => {
+                        setskin(e);
+                        AvatarCreator();
+                      }}
+                    >
+                      {e}
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+            <div className="avcontainer">
+              <h6 className="text-center avtxt">Select top</h6>
+              {tops.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="btn"
+                      key={i * Math.random()}
+                      onClick={() => {
+                        settop(e);
+                        AvatarCreator();
+                      }}
+                    >
+                      {e}
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+            <div className="avcontainer">
+              <h6 className="text-center avtxt">Select Hair Color</h6>
+              {haircolors.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="btn"
+                      key={i * Math.random()}
+                      onClick={() => {
+                        sethaircolor(e);
+                        AvatarCreator();
+                      }}
+                    >
+                      {e}
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+            <div className="avcontainer">
+              <h6 className="text-center avtxt">Select Clothing Color</h6>
+              {clothingcolors.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="btn"
+                      key={i * Math.random()}
+                      onClick={() => {
+                        setclothingcolor(e);
+                        AvatarCreator();
+                      }}
+                    >
+                      {e}
+                    </div>
+                  </>
+                );
+              })}
+            </div>
           </div>
+        </>
+      )}
+
+      <div className={`col-12 ${signup===true?"col-lg-6":"col-lg-8"} ${signup===true?"col-lg-6":"col-md-8"} d-flex justify-content-center`}>
+        {
+          signup===true && <>
+           <div id="root1">
+          Select the options and get your avatar on stage
+        </div>
+          </>
+        }
+       
+        <form method="POST" className="form">
+          {signup===true && (
+            <>
+              <div className="formele">
+                <label>Enter username</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={userName}
+                  onChange={(e) => setuserName(e.target.value)}
+                />
+              </div>
+            </>
+          )}
+
           <div className="formele">
             <label>Enter email</label>
             <input
@@ -938,7 +993,9 @@ const Avatar = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </div>
-          <button onClick={(e) => SubmitHandler(e)}>Submit</button>
+          <button onClick={(e) => SubmitHandler(e)}>
+            {signup===true ? "Signup" : "login"}
+          </button>
         </form>
       </div>
     </>
