@@ -1,5 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {UserSignup} from "../Actions/User_signup";
 
 const Avatar = () => {
   //Avataar realedt code
@@ -762,6 +765,9 @@ const Avatar = () => {
     haircolor: "brown",
     clothingcolor: "blue02",
   });
+  //___________________redux________________
+  const dispatch=useDispatch();
+  const history=useHistory();
   //   useEffect(() => {
   //     console.log(skins);
   //     console.log(tops);
@@ -803,7 +809,7 @@ const Avatar = () => {
   const SubmitHandler = async (e) => {
     e.preventDefault();
     console.log(avator);
-    const { data } = await axios.put(
+    const { data } = await axios.post(
       "/api/user/signup",
       { userName, email, password, avator },
       {
@@ -813,8 +819,11 @@ const Avatar = () => {
       }
     );
     console.log(data);
+
     if (data) {
-      alert("Signup done");
+     alert("Signup done");
+      dispatch(UserSignup(data))
+      history.push("/");
     } else {
       alert("Oops signup failed");
     }

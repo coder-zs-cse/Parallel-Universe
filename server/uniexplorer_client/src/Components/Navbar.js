@@ -1,68 +1,18 @@
-// import React from "react";
-// import { Link,Link } from "react-router-dom";
-// const Navbar = () => {
-//   return (
-//     <>
-//       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-//         <div className="container-fluid">
-//           <a className="navbar-brand" href="#">
-//             Navbar
-//           </a>
-//           <button
-//             className="navbar-toggler"
-//             type="button"
-//             data-bs-toggle="collapse"
-//             data-bs-target="#navbarNav"
-//             aria-controls="navbarNav"
-//             aria-expanded="false"
-//             aria-label="Toggle navigation"
-//           >
-//             <span className="navbar-toggler-icon"></span>
-//           </button>
-//           <div className="collapse navbar-collapse" id="navbarNav">
-//             <ul className="navbar-nav">
-//               <li className="nav-item">
-//                 <Link className="nav-link active" to="/">
-//                   Home
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <Link className="nav-link" to="/login">
-//                   login
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <Link className="nav-link" to="/signup">
-//                   signup
-//                 </Link>
-//               </li>
-//             </ul>
-//           </div>
-//         </div>
-//       </nav>
-//     </>
-//   );
-// };
-
 // export default Navbar;
 import React from "react";
 
 // import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 // import { Signout } from "../actions/UserActions";
+import { useDispatch, useSelector } from "react-redux";
+import Userlogout from "../Actions/User_logout";
 
 const Navbar = () => {
   //   const history = useHistory();
-
-  //   //Getting userDetails to check if signin or not
-  //   const UserDetails = useSelector((state) => state.UserDetails);
-  //   const { loading, error, UserInfo } = UserDetails;
-  //   //Importing dispatch
-  //   const dispatch = useDispatch();
-  //   const SignoutHandler = () => {
-  //     dispatch(Signout());
-  //     history.push("");
-  //   };
+  const dispatch = useDispatch();
+  const history=useHistory();
+  const UserDetails = useSelector((state) => state.UserDetails);
+  const { loading: userloading, error, UserInfo } = UserDetails;
 
   const RenderMenu = () => {
     return (
@@ -72,17 +22,40 @@ const Navbar = () => {
             Home
           </Link>
         </li>
-        <li className="nav-item" id="n2">
-          <Link className="nav-link" to="/login">
-            Login
-          </Link>
-        </li>
+        {UserInfo===null ? (
+          <>
+            <li className="nav-item" id="n2">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
 
-        <li className="nav-item" id="n3">
-          <Link className="nav-link" to="/signup">
-            Signup
-          </Link>
-        </li>
+            <li className="nav-item" id="n3">
+              <Link className="nav-link" to="/signup">
+                Signup
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav-item" id="n3">
+              <Link className="nav-link" to="/">
+                {UserInfo.userName}
+              </Link>
+            </li>
+            <li className="nav-item" id="n3">
+              <Link
+                className="nav-link"
+                onClick={() => {
+                  dispatch(Userlogout());
+                  history.push("/login");
+                }}
+              >
+                Logout
+              </Link>
+            </li>
+          </>
+        )}
       </>
     );
   };
